@@ -3,7 +3,9 @@
 let NUM = Math.floor(Math.random() * 100);
 
 
-function stupidSearch(){
+function sequentialSearch(){
+
+  document.getElementById("output_sequential").innerHTML = "The number is....?";
 
 }
 
@@ -63,7 +65,6 @@ function selectionSort(arr) {
 
 function testAll() {
   let arr = [-.1,4,7,6,1651,234,5,-18,9,2,3];
-  console.log(stupidSearch());
   console.log(selectionSort(arr));
   console.log(bubbleSort(arr));
 }
