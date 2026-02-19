@@ -1,67 +1,76 @@
 // python -m http.server
+//random number
+
 
 let NUM = Math.floor(Math.random() * 100);
-
+console.log(NUM);
 
 function sequentialSearch(){
-
-  document.getElementById("output_sequential").innerHTML = "The number is....?";
-
-}
-
-function binarySearch() {
-  while(true) {
-
-    let guess = document.getElementById("guess").value;
-    document.getElementById("output_binary").innerHTML += guess;
-    console.log(guess)
-    console.log(NUM)
-
-    break;
+for(let i = 0; i<=100; i++){
+  if(i==NUM){
+    document.getElementById("output_sequential").innerHTML = "The number is " + NUM;
   }
 }
+}
 
-//sort test array using Bubble Sort
+let guesses = 0
+function binarySearch() {
+
+    let guess = document.getElementById("guess").value;
+
+    if(guess>NUM){
+       document.getElementById("output_binary").innerHTML = guess + " is too high!";
+       guesses ++;
+    }else if(guess<NUM){
+      document.getElementById("output_binary").innerHTML = guess + " is too low!";
+      guesses ++;
+    }else if(guess==NUM){
+      document.getElementById("output_binary").innerHTML = guess + " is correct! It took you " + guesses + " guesses. Great job!";
+    }
+    else if(guess==NUM&& guesses >7){
+      document.getElementById("output_binary").innerHTML = guess + " is correct! It took you " + guesses + "! Aim for less than 7 next time! "
+    }
+    }
+    
+
+
 function bubbleSort(arr) {
 
-document.getElementById("output_bubble").innerHTML = "before Bubble: " + arr
-/*  Bubble Sort pseudo code
+  document.getElementById("output_bubble").innerHTML = "before Bubble: " + arr
+  for (var i = 0; i < arr.length; i++) {
+    for (var j = 0; j < (arr.length - i - 1); j++) {
 
-    for i from 0 to len
-      for j from 0 to len - i
-        if a[j] > a[j+1]
-          swap(a[j],a[j+1])
-*/    
-document.getElementById("output_bubble").innerHTML += "<br>after Bubble: " + arr
+      if ((arr[j]) > arr[j + 1]) {
+        let temp = arr[j]
+        arr[j] = arr[j + 1]
+        arr[j + 1] = temp;
+      }
+    }
+  }
+  document.getElementById("output_bubble").innerHTML += "<br>after Bubble: " + arr
 
 }
 
-//sort test array using selection sort
-function selectionSort(arr) {
-
+  function selectionSort(arr) {
+  let min;
   document.getElementById("output_selection").innerHTML = "<br>before Selection: " + arr
+  for(let i = 0; i < arr.length-1; i++){
+     min = i;
+    for(let j = i+1; j < arr.length; j++){
+      if(arr[j] < arr[min]){
+        min = j;
+      }
+    }
+    if(min != i){
+      let temp = arr[i];
+      arr[min] = arr[i];
+      arr[i] = temp;
+    }
+  }
 
-
-/*  Selection Sort pseudo code
-
-    for i from 1 to N - 1
-      // set current element as minimum
-      min = i    
-    
-      // check the element to be minimum 
-      for j from i+1 to N 
-        if a[j] < a[min]
-          min = j;
-    
-      //swap the minimum element with the current element
-      if min != i
-        swap(arr,a[min],a[i])
-*/ 
-
-  document.getElementById("output_selection").innerHTML += "<br>after Selection: " + arr
+  document.getElementById("output_selection").innerHTML += "<br>after Selection: " + arr;
 
 }
-  
 
 function testAll() {
   let arr = [-.1,4,7,6,1651,234,5,-18,9,2,3];
@@ -69,27 +78,3 @@ function testAll() {
   console.log(bubbleSort(arr));
 }
 
-
-
-//HL Only: recursive binarySearch
-function recursiveBinarySearch(){
-
-}
-
-//HL Only: recursive mergeSort()
-function recursiveMergeSort(){
-
-}
-
-/*  
-
-//swap pseudo code
-swap(arr,index1,index2)
-
-    temp = index2
-    index2 = index1
-    index1 = temp
-
-    return arr
-
-*/
